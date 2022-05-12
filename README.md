@@ -16,3 +16,4 @@ This repository stores our solutions for all problems in the NT118.M22 - Phát t
 |2    |    [Truc Trinh](https://github.com/Trinhtruc1831/)    |  19521059  | Member
 
 ## Status of repository
+npm firebase@9.6.11
