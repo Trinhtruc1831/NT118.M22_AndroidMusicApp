@@ -1,7 +1,7 @@
-import { View, Text, Button, Image } from 'react-native'
-import React from 'react'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import 'react-native-gesture-handler';
+import { View, Text, Button, Image } from "react-native";
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import "react-native-gesture-handler";
 
 import User from "./User";
 import Chart from "./Chart";
@@ -17,70 +17,63 @@ import Charticon from "../assets/icon/chart.png";
 const Tab = createBottomTabNavigator();
 
 export default function Botnavi({ navigation }) {
-    return (
-      <Tab.Navigator 
+  return (
+    <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
         tabBarStyle: Styles.bottomnavi,
-        headerShown: false,        
+        headerShown: false,
       }}
-      tabBarOptions= {{ showLabel: false }}
-      
-      >
-        <Tab.Screen  
-        style={Styles.bottomnavi} 
-        name="User" 
-        component={User} 
+      tabBarOptions={{ showLabel: false }}
+    >
+      <Tab.Screen
+        style={Styles.bottomnavi}
+        name="User"
+        component={User}
         options={{
-          tabBarIcon: ({size,focused,color}) => {
+          tabBarIcon: ({ size, focused, color }) => {
             return (
-              <Image
-                style={{ width: size, height: size }}
-                source = {Usericon}
-              />
-            );},
-          }} 
-            />
-        <Tab.Screen 
-        style={Styles.bottomnavi} 
-        name="Home" 
-        component={Home} 
+              <Image style={{ width: size, height: size }} source={Usericon} />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        style={Styles.bottomnavi}
+        name="Home"
+        component={Home}
         options={{
-          tabBarIcon: ({size,focused,color}) => {
+          tabBarIcon: ({ size, focused, color }) => {
             return (
-              <Image
-                style={{ width: size, height: size }}
-                source = {Homeicon}
-              />
-            );},
-          }} />
-        <Tab.Screen 
-        style={Styles.bottomnavi} 
-        name="Chart" 
-        component={Chart} 
+              <Image style={{ width: size, height: size }} source={Homeicon} />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        style={Styles.bottomnavi}
+        name="Chart"
+        component={Chart}
         options={{
-          tabBarIcon: ({size,focused,color}) => {
+          tabBarIcon: ({ size, focused, color }) => {
             return (
-              <Image
-                style={{ width: size, height: size }}
-                source = {Charticon}
-              />
-            );},
-          }}
-        />
-        <Tab.Screen 
-        style={Styles.bottomnavi} 
-        name="Chill" 
+              <Image style={{ width: size, height: size }} source={Charticon} />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        style={Styles.bottomnavi}
+        name="Chill"
         component={Chill}
         options={{
-          tabBarIcon: ({size,focused,color}) => {
+          tabBarIcon: ({ size, focused, color }) => {
             return (
-              <Image
-                style={{ width: size, height: size }}
-                source = {Chillicon}
-              />
-            );},
-          }} />        
-      </Tab.Navigator>
-      );
+              <Image style={{ width: size, height: size }} source={Chillicon} />
+            );
+          },
+        }}
+      />
+    </Tab.Navigator>
+  );
 }
