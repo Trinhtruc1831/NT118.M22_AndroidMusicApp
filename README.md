@@ -18,6 +18,8 @@ This repository stores our solutions for all problems in the NT118.M22 - Phát t
 ## Status of repository
 npm firebase@9.6.11
 ## Guideline
-Open "Content" folder in VSCode
-Install the .apk file in the android device which used to deploy the app
-Deploy app by using the command "expo start --dev-client" in VSCode terminal
+1.Open "Content" folder in VSCode
+
+2.Install the .apk file in the android device which used to deploy the app
+
+3.Deploy app by using the command "expo start --dev-client" in VSCode terminal
