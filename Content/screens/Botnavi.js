@@ -6,6 +6,7 @@ import "react-native-gesture-handler";
 import User from "./User";
 import Chart from "./Chart";
 import Chill from "./Chill";
+import Lismusic from "./Lismusic";
 import Home from "./Home";
 import Styles from "../styles/Styles";
 
@@ -64,8 +65,8 @@ export default function Botnavi({ navigation }) {
       />
       <Tab.Screen
         style={Styles.bottomnavi}
-        name="Chill"
-        component={Chill}
+        name="Lismusic"
+        component={Lismusic}
         options={{
           tabBarIcon: ({ size, focused, color }) => {
             return (
