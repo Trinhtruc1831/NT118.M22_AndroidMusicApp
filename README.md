@@ -20,6 +20,8 @@ npm firebase@9.6.11
 ## Guideline
 1.Open "Content" folder in VSCode
 
-2.Install the .apk file in the android device which used to deploy the app
+2.Install the .apk file in the android device which used to deploy the app (drag and drop the .apk file to the device if using virtual device like genimotion)
 
-3.Deploy app by using the command "expo start --dev-client" in VSCode terminal
+3.Fist install app by using the command "npm install expo" in VSCode terminal
+
+4.Deploy app by using the command "expo start --dev-client" in VSCode terminal
