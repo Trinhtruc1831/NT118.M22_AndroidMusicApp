@@ -49,22 +49,7 @@ export default function Signup({ navigation }) {
         });
         //setData(array);
       });
-
-      firebase
-      .database()
-      .ref("BAIHAT/")
-      .push()
-      .set(
-        {
-          Ten: "Still with you",
-          Casi: "Jungkook",
-          Linkbaihat: "../assets/music/2.mp3",
-          Linkhava: "../assets/img/2.png",
-          Tag: "...",
-          Luotthich: 0,
-          Luotnghe:0,
-          Luottai:0
-        });
+      
 
     let i = 0;
     while (i < array.length) {

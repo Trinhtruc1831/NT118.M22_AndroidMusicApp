@@ -74,6 +74,8 @@ export default function App() {
       console.log("\nKết nối firebase thành công\n");
       //testaddData("lttt", "123", "lttt0206", "Lý Thảo");
       //get_DATA();
+      
+      
     }
   }, []);
 

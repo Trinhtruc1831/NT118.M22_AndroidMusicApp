@@ -9,7 +9,10 @@ import {
   Image,
   FlatList,
   TextInput,
+  ScrollView,
 } from 'react-native';
+import Carousel from '../component/Carousel';
+import { dummyData } from '../data/Data';
 import firebase from "firebase/compat/app";
 import ConnectFirebase from "../config";
 import "firebase/compat/auth";
@@ -21,10 +24,8 @@ const ListItem = ({ item }) => {
   return (
     <View style={styles.item}>
       <Image
-        source={{
-          uri: item.uri,
-        }}
         style={styles.itemPhoto}
+        source={{uri: item.url}}
         resizeMode="cover"
       />
       <Text style={styles.itemText}>{item.text}</Text>
@@ -37,6 +38,7 @@ const ListItem = ({ item }) => {
 export default function Home({ navigation }) {
   useEffect(() => {
     let array = [];
+    
     firebase
       .database()
       .ref("BAIHAT/")
@@ -46,14 +48,42 @@ export default function Home({ navigation }) {
           SECTIONS[0].data.push({
             key: childSnapshot.key,
             text: childData.Ten,
-            uri: childData.Linkhava,
+            url: childData.Linkava,
           });
+          SECTIONS[1].data.push({
+            key: childSnapshot.key,
+            text: childData.Ten,
+            url: childData.Linkava,
+          });
+          SECTIONS[2].data.push({
+            key: childSnapshot.key,
+            text: childData.Ten,
+            url:  childData.Linkava,
+          });
+          SECTIONS[0].data.push({
+            key: childSnapshot.key,
+            text: childData.Ten,
+            url: childData.Linkava,
+          });
+          SECTIONS[1].data.push({
+            key: childSnapshot.key,
+            text: childData.Ten,
+            url:  childData.Linkava,
+          });
+          SECTIONS[2].data.push({
+            key: childSnapshot.key,
+            text: childData.Ten,
+            url:  childData.Linkava,
+          });
+
         });
         //setData(array);
       });
+      console.log(SECTIONS);
     }, [])
     return (
       <View style={styles.container}>
+        
       <View style={styles.header}>  
       <TextInput
             style={styles.input}
@@ -66,7 +96,13 @@ export default function Home({ navigation }) {
           /> 
       </View>
       <StatusBar style="light" />
+      
       <SafeAreaView style={{ flex: 1}}>
+        <ScrollView>  
+
+      <View>
+            <Carousel data = {dummyData}/>
+        </View>
         <SectionList
           contentContainerStyle={{ paddingHorizontal: 10 }}
           stickySectionHeadersEnabled={false}
@@ -74,24 +110,29 @@ export default function Home({ navigation }) {
           renderSectionHeader={({ section }) => (
             <>
               <Text style={styles.sectionHeader}>{section.title}</Text>
-              {/* {section.horizontal ? ( */}
+              {section.horizontal ? ( 
                 <FlatList
                   horizontal
                   data={section.data}
                   renderItem={({ item }) => <ListItem item={item} />}
                   showsHorizontalScrollIndicator={false}
                 />
-              {/*  ) : null} */}
+                ) : null} 
             </>
           )}
           renderItem={({ item, section }) => {
-            // if (section.horizontal) {
-            //   return null;
-            // }
-            // return <ListItem item={item} />;
+            if (section.horizontal) {
+              return null;
+            }
+            return <ListItem item={item} />;
             return null;
           }}
         />
+        <View style={styles.item}>
+      
+      <Text style={styles.sectionHeader}>Danh mục</Text>
+    </View>
+        </ScrollView>  
       </SafeAreaView>
     </View>
       );
@@ -99,97 +140,98 @@ export default function Home({ navigation }) {
 
 let SECTIONS = [
   {
-    title: 'Made for you',
+    title: 'Mới nhất',
     horizontal: true,
     data: [
-      {
-        key: '1',
-        text: 'Item text 1',
-        uri: 'https://picsum.photos/id/1/200',
-      },
-      {
-        key: '2',
-        text: 'Item text 2',
-        uri: 'https://picsum.photos/id/10/200',
-      },
+      // {
+      //   key: '1',
+      //   text: 'Item text 1',
+      //   uri: 'https://picsum.photos/id/1/200',
+      // },
+      // {
+      //   key: '2',
+      //   text: 'Item text 2',
+      //   uri: 'https://picsum.photos/id/10/200',
+      // },
 
-      {
-        key: '3',
-        text: 'Item text 3',
-        uri: 'https://picsum.photos/id/1002/200',
-      },
-      {
-        key: '4',
-        text: 'Item text 4',
-        uri: 'https://picsum.photos/id/1006/200',
-      },
-      {
-        key: '5',
-        text: 'Item text 5',
-        uri: 'https://picsum.photos/id/1008/200',
-      },
+      // {
+      //   key: '3',
+      //   text: 'Item text 3',
+      //   uri: 'https://picsum.photos/id/1002/200',
+      // },
+      // {
+      //   key: '4',
+      //   text: 'Item text 4',
+      //   uri: 'https://picsum.photos/id/1006/200',
+      // },
+      // {
+      //   key: '5',
+      //   text: 'Item text 5',
+      //   uri: 'https://picsum.photos/id/1008/200',
+      // },
     ],
   },
   {
-    title: 'Punk and hardcore',
+    title: 'Nghe nhiều nhất',
+    horizontal: true,
     data: [
-      {
-        key: '1',
-        text: 'Item text 1',
-        uri: 'https://picsum.photos/id/1011/200',
-      },
-      {
-        key: '2',
-        text: 'Item text 2',
-        uri: 'https://picsum.photos/id/1012/200',
-      },
+      // {
+      //   key: '1',
+      //   text: 'Item text 1',
+      //   uri: 'https://picsum.photos/id/1011/200',
+      // },
+      // {
+      //   key: '2',
+      //   text: 'Item text 2',
+      //   uri: 'https://picsum.photos/id/1012/200',
+      // },
 
-      {
-        key: '3',
-        text: 'Item text 3',
-        uri: 'https://picsum.photos/id/1013/200',
-      },
-      {
-        key: '4',
-        text: 'Item text 4',
-        uri: 'https://picsum.photos/id/1015/200',
-      },
-      {
-        key: '5',
-        text: 'Item text 5',
-        uri: 'https://picsum.photos/id/1016/200',
-      },
+      // {
+      //   key: '3',
+      //   text: 'Item text 3',
+      //   uri: 'https://picsum.photos/id/1013/200',
+      // },
+      // {
+      //   key: '4',
+      //   text: 'Item text 4',
+      //   uri: 'https://picsum.photos/id/1015/200',
+      // },
+      // {
+      //   key: '5',
+      //   text: 'Item text 5',
+      //   uri: 'https://picsum.photos/id/1016/200',
+      // },
     ],
   },
   {
     title: 'Based on your recent listening',
     data: [
-      {
-        key: '1',
-        text: 'Item text 1',
-        uri: 'https://picsum.photos/id/1020/200',
-      },
-      {
-        key: '2',
-        text: 'Item text 2',
-        uri: 'https://picsum.photos/id/1024/200',
-      },
+      // {
+      //   key: '1',
+      //   text: 'Item text 1',
+      //   uri: 'https://picsum.photos/id/1020/200',
+      // },
+      // {
+      //   key: '2',
+      //   text: 'Item text 2',
+      //   uri: 'https://picsum.photos/id/1024/200',
+      // },
 
-      {
-        key: '3',
-        text: 'Item text 3',
-        uri: 'https://picsum.photos/id/1027/200',
-      },
-      {
-        key: '4',
-        text: 'Item text 4',
-        uri: 'https://picsum.photos/id/1035/200',
-      },
-      {
-        key: '5',
-        text: 'Item text 5',
-        uri: 'https://picsum.photos/id/1038/200',
-      },
+      // {
+      //   key: '3',
+      //   text: 'Item text 3',
+      //   uri: 'https://picsum.photos/id/1027/200',
+      // },
+      // {
+      //   key: '4',
+      //   text: 'Item text 4',
+      //   uri: 'https://picsum.photos/id/1035/200',
+      // },
+      // {
+      //   key: '5',
+      //   text: 'Item text 5',
+      //   uri: 'https://picsum.photos/id/1038/200',
+      // },
     ],
   },
 ];
@@ -197,12 +239,12 @@ let SECTIONS = [
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212',
+    backgroundColor: '#F4ECD0',
   },
   sectionHeader: {
     fontWeight: '800',
     fontSize: 18,
-    color: '#f4f4f4',
+    color: '#7B6242',
     marginTop: 20,
     marginBottom: 5,
   },
@@ -212,10 +254,15 @@ const styles = StyleSheet.create({
   itemPhoto: {
     width: 200,
     height: 200,
+    borderRadius:10,
   },
   itemText: {
-    color: 'rgba(255, 255, 255, 0.5)',
+    color: '#7B6242',
     marginTop: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    fontSize: 16,
   },
   header: {
     flex: 0.15,
