@@ -10,6 +10,7 @@ import {
   FlatList,
   TextInput,
   ScrollView,
+  Button,
 } from 'react-native';
 import Carousel from '../component/Carousel';
 import { dummyData } from '../data/Data';
@@ -131,6 +132,46 @@ export default function Home({ navigation }) {
         <View style={styles.item}>
       
       <Text style={styles.sectionHeader}>Danh mục</Text>
+      <View style={styles.button}>
+      <View style={styles.btlogin}>
+          <Button
+            title="V-pop"
+            color="#7B6242"
+            onPress={() => {
+              get_DATA(username, password);
+            }}
+          />
+        </View>
+        <View style={styles.btlogin}>
+          <Button
+            title="K-pop"
+            color="#7B6242"
+            onPress={() => {
+              get_DATA(username, password);
+            }}
+          />
+        </View>
+         </View>
+         <View style={styles.button}>
+        <View style={styles.btlogin}>
+          <Button
+            title="J-pop"
+            color="#7B6242"
+            onPress={() => {
+              get_DATA(username, password);
+            }}
+          />
+        </View>
+        <View style={styles.btlogin}>
+          <Button
+            title="US=UK"
+            color="#7B6242"
+            onPress={() => {
+              get_DATA(username, password);
+            }}
+          />
+        </View>
+        </View>
     </View>
         </ScrollView>  
       </SafeAreaView>
@@ -242,7 +283,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F4ECD0',
   },
   sectionHeader: {
-    fontWeight: '800',
+    fontWeight: 'bold',
     fontSize: 18,
     color: '#7B6242',
     marginTop: 20,
@@ -278,5 +319,20 @@ const styles = StyleSheet.create({
     borderColor: "#A88A64",
     borderRadius: 7,
     padding: 10,
+  },
+  button: {
+    //flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    
+  },
+  btlogin: {
+    flex: 0.5,
+    width: 150,
+    height: 50,
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    color: "#7B6242",
   },
 });

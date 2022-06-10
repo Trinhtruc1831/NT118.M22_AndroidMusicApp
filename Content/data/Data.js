@@ -14,4 +14,9 @@ export const dummyData =
                 title: 'Vegatable Salad', url: 'https://avatar-ex-swe.nixcdn.com/slideshow/2022/05/31/7/4/2/b/1653993277043_org.jpg',
                 description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
                 id: 3
+        },
+        {
+                title: 'Vegatable Salad', url: 'https://avatar-ex-swe.nixcdn.com/slideshow/2022/06/09/d/5/6/b/1654764435139_org.jpg',
+                description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                id: 3
         }];
