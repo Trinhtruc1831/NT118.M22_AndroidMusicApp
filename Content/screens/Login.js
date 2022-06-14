@@ -24,10 +24,10 @@ export default function Login({ navigation }) {
   const [username, setUsername] = useState(null);
   const [password, setPass] = useState([]);
   const [isChecked, setChecked] = useState(false);
-
-  function get_DATA(user, pass) {
+  let array = [];
+  
+  useEffect(()=>{    
     ConnectFirebase();
-    let array = [];
     firebase
       .database()
       .ref("MEMBER/")
@@ -42,7 +42,23 @@ export default function Login({ navigation }) {
         });
         //setData(array);
       });
+  },[])
 
+  function get_DATA(user, pass) {   
+    firebase
+    .database()
+    .ref("MEMBER/")
+    .on("value", function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+        var childData = childSnapshot.val();
+        array.push({
+          id: childSnapshot.key,
+          Username: childData.Username,
+          Password: childData.Password,
+        });
+      });
+      //setData(array);
+    });
     let i = 0;
     while (i < array.length) {
       if (array[i].Username == user && array[i].Password == pass) {
@@ -80,7 +96,6 @@ export default function Login({ navigation }) {
               setUsername(text);
             }}
             value={username}
-            value={number}
             placeholder="Nhập tên tài khoản vào đây"
             keyboardType="numeric"
           />
@@ -91,7 +106,6 @@ export default function Login({ navigation }) {
               setPass(text);
             }}
             value={password}
-            value={number}
             placeholder="Nhập mật khẩu vào đây"
             keyboardType="numeric"
           />

@@ -38,48 +38,65 @@ const ListItem = ({ item }) => {
 
 export default function Home({ navigation }) {
   useEffect(() => {
-    let array = [];
-    
+    let array = [
+      {
+        title: 'Mới nhất',
+        horizontal: true,
+        data: [
+        ],
+      },
+      {
+        title: 'Nghe nhiều nhất',
+        horizontal: true,
+        data: [
+        ],
+      },
+      {
+        title: 'Based on your recent listening',
+        data: [
+        ],
+      },
+    ];
     firebase
       .database()
       .ref("BAIHAT/")
       .on("value", function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
           var childData = childSnapshot.val();
-          SECTIONS[0].data.push({
+          array[0].data.push({
             key: childSnapshot.key,
             text: childData.Ten,
             url: childData.Linkava,
           });
-          SECTIONS[1].data.push({
+          array[1].data.push({
             key: childSnapshot.key,
             text: childData.Ten,
             url: childData.Linkava,
           });
-          SECTIONS[2].data.push({
+          array[2].data.push({
             key: childSnapshot.key,
             text: childData.Ten,
             url:  childData.Linkava,
           });
-          SECTIONS[0].data.push({
+          array[0].data.push({
             key: childSnapshot.key,
             text: childData.Ten,
             url: childData.Linkava,
           });
-          SECTIONS[1].data.push({
+          array[1].data.push({
             key: childSnapshot.key,
             text: childData.Ten,
             url:  childData.Linkava,
           });
-          SECTIONS[2].data.push({
+          array[2].data.push({
             key: childSnapshot.key,
             text: childData.Ten,
             url:  childData.Linkava,
           });
 
         });
-        //setData(array);
       });
+      SECTIONS=array;
       console.log(SECTIONS);
     }, [])
     return (
@@ -115,6 +132,7 @@ export default function Home({ navigation }) {
                 <FlatList
                   horizontal
                   data={section.data}
+                  //data={songsState}
                   renderItem={({ item }) => <ListItem item={item} />}
                   showsHorizontalScrollIndicator={false}
                 />
@@ -184,95 +202,17 @@ let SECTIONS = [
     title: 'Mới nhất',
     horizontal: true,
     data: [
-      // {
-      //   key: '1',
-      //   text: 'Item text 1',
-      //   uri: 'https://picsum.photos/id/1/200',
-      // },
-      // {
-      //   key: '2',
-      //   text: 'Item text 2',
-      //   uri: 'https://picsum.photos/id/10/200',
-      // },
-
-      // {
-      //   key: '3',
-      //   text: 'Item text 3',
-      //   uri: 'https://picsum.photos/id/1002/200',
-      // },
-      // {
-      //   key: '4',
-      //   text: 'Item text 4',
-      //   uri: 'https://picsum.photos/id/1006/200',
-      // },
-      // {
-      //   key: '5',
-      //   text: 'Item text 5',
-      //   uri: 'https://picsum.photos/id/1008/200',
-      // },
     ],
   },
   {
     title: 'Nghe nhiều nhất',
     horizontal: true,
     data: [
-      // {
-      //   key: '1',
-      //   text: 'Item text 1',
-      //   uri: 'https://picsum.photos/id/1011/200',
-      // },
-      // {
-      //   key: '2',
-      //   text: 'Item text 2',
-      //   uri: 'https://picsum.photos/id/1012/200',
-      // },
-
-      // {
-      //   key: '3',
-      //   text: 'Item text 3',
-      //   uri: 'https://picsum.photos/id/1013/200',
-      // },
-      // {
-      //   key: '4',
-      //   text: 'Item text 4',
-      //   uri: 'https://picsum.photos/id/1015/200',
-      // },
-      // {
-      //   key: '5',
-      //   text: 'Item text 5',
-      //   uri: 'https://picsum.photos/id/1016/200',
-      // },
     ],
   },
   {
     title: 'Based on your recent listening',
     data: [
-      // {
-      //   key: '1',
-      //   text: 'Item text 1',
-      //   uri: 'https://picsum.photos/id/1020/200',
-      // },
-      // {
-      //   key: '2',
-      //   text: 'Item text 2',
-      //   uri: 'https://picsum.photos/id/1024/200',
-      // },
-
-      // {
-      //   key: '3',
-      //   text: 'Item text 3',
-      //   uri: 'https://picsum.photos/id/1027/200',
-      // },
-      // {
-      //   key: '4',
-      //   text: 'Item text 4',
-      //   uri: 'https://picsum.photos/id/1035/200',
-      // },
-      // {
-      //   key: '5',
-      //   text: 'Item text 5',
-      //   uri: 'https://picsum.photos/id/1038/200',
-      // },
     ],
   },
 ];
