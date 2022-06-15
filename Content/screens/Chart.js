@@ -8,9 +8,16 @@ import { Avatar, Title, Caption, TouchableRipple } from 'react-native-paper';
 
 export default function Chart({ navigation }) {
   const [song, setSong] = useState([
-    {name: }
-  ])
+    {name: 'Still with you', key: '1'},
+    {name: 'Heyahe', key: '2'},
+    {name: 'Instagram', key: '3'},
+    {name: 'Mưa hồng', key: '4'},
+    {name: 'Long long ago', key: '5'},
+    {name: 'Mưa hồng', key: '6'},
+    {name: 'Thương', key: '7'},
+  ]);
   return (
+    <Text >Still with you </Text>
     // <View>
     //   <ScrollView>
     //     <View style={{ padding: 10, width: '100%', backgroundColor: '#7B6242', height: 100 }}>
