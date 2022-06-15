@@ -8,7 +8,7 @@ import "react-native-gesture-handler";
 import Login from "./screens/Login";
 import Signup from "./screens/Signup";
 import Botnavi from "./screens/Botnavi";
-
+import User from "./screens/User";
 import firebase from "firebase/compat/app";
 
 import "firebase/compat/auth";
@@ -87,6 +87,7 @@ export default function App() {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Botnavi" component={Botnavi} />
+        {/* <Stack.Screen name="User" component={User}/> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

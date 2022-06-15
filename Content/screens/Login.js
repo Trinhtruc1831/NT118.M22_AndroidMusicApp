@@ -79,7 +79,7 @@ export default function Login({ navigation }) {
               setUsername(text);
             }}
             value={username}
-            value={number}
+            
             placeholder="Nhập tên tài khoản vào đây"
             keyboardType="numeric"
           />
@@ -90,7 +90,7 @@ export default function Login({ navigation }) {
               setPass(text);
             }}
             value={password}
-            value={number}
+            
             placeholder="Nhập mật khẩu vào đây"
             keyboardType="numeric"
           />
