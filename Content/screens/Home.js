@@ -26,10 +26,10 @@ const ListItem = ({ item }) => {
     <View style={styles.item}>
       <Image
         style={styles.itemPhoto}
-        source={{uri: item.url}}
+        source={{uri: item.Linkava}}
         resizeMode="cover"
       />
-      <Text style={styles.itemText}>{item.text}</Text>
+      <Text style={styles.itemText}>{item.Ten}</Text>
     </View>
   );
 };
@@ -38,6 +38,7 @@ const ListItem = ({ item }) => {
 
 export default function Home({ navigation }) {
   useEffect(() => {
+    let baihat=[];
     let array = [
       {
         title: 'Mới nhất',
@@ -51,11 +52,6 @@ export default function Home({ navigation }) {
         data: [
         ],
       },
-      {
-        title: 'Based on your recent listening',
-        data: [
-        ],
-      },
     ];
     firebase
       .database()
@@ -63,39 +59,35 @@ export default function Home({ navigation }) {
       .on("value", function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
           var childData = childSnapshot.val();
-          array[0].data.push({
+          baihat.push({
             key: childSnapshot.key,
-            text: childData.Ten,
-            url: childData.Linkava,
-          });
-          array[1].data.push({
-            key: childSnapshot.key,
-            text: childData.Ten,
-            url: childData.Linkava,
-          });
-          array[2].data.push({
-            key: childSnapshot.key,
-            text: childData.Ten,
-            url:  childData.Linkava,
-          });
-          array[0].data.push({
-            key: childSnapshot.key,
-            text: childData.Ten,
-            url: childData.Linkava,
-          });
-          array[1].data.push({
-            key: childSnapshot.key,
-            text: childData.Ten,
-            url:  childData.Linkava,
-          });
-          array[2].data.push({
-            key: childSnapshot.key,
-            text: childData.Ten,
-            url:  childData.Linkava,
-          });
-
+            Ten: childData.Ten,
+            Casi: childData.Casi,
+            Danhmuc:childData.Danhmuc,
+            Linkava:childData.Linkava,
+            Linkbaihat: childData.Linkbaihat,
+            Luotnghe:childData.Luotnghe,
+            Luotai:childData.Luotai,
+            Luotthich: childData.Luotthich,
+            Tag:childData.Tag,
+            Ngaydangtai: childData.Ngaydangtai
+          });          
         });
       });
+      let i =  baihat.length;
+      i=i-1;
+      while (i >=0) {
+        array[0].data.push(baihat[i]);
+        i--;
+      }    
+      baihat.sort(function(a,b){
+        if(a.Luotnghe> b.Luotnghe) return -1;
+        if(a.Luotnghe <b.Luotnghe) return 1;});
+       i = 0;
+      while (i < baihat.length) {
+        array[1].data.push(baihat[i]);
+        i++;
+      }    
       SECTIONS=array;
       console.log(SECTIONS);
     }, [])

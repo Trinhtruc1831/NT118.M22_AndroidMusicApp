@@ -1,23 +1,68 @@
 import { View,FlatList, Text, ScrollView, ImageBackground,
    TouchableHighlight, TouchableOpacity, Button, StyleSheet, Image } from 'react-native'
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import background from "../assets/icon/background.png";
 import { Avatar, Title, Caption, TouchableRipple } from 'react-native-paper';
+import firebase from "firebase/compat/app";
+import ConnectFirebase from "../config";
+import "firebase/compat/auth";
+
+import "firebase/compat/database";
+import "firebase/compat/firestore";
 // import { ScrollView } from 'react-native-gesture-handler';
 // import styles from '../styles/Styles';
 
 
 export default function Chart({ navigation }) {
 // tạo mẫu để chạy giao diện thui nhe
-  const [song, setSong] = useState([
-    {name: 'Still with you',singer: 'Jungkook', image: '../assets/img/2.png', key: '1'},
-    {name: 'Heyahe',singer: 'Jung Je-Won',image: '../assets/img/3.png', key: '2'},
-    {name: 'Instagram',singer: 'Dean',image: '../assets/img/4.png', key: '3'},
-    {name: 'Mưa hồng',singer: 'Khánh Ly',image: '../assets/img/5.png', key: '4'},
-    {name: 'Long long ago',singer: 'Unknow',image: '../assets/img/6.png', key: '5'},
-    {name: 'How you like that',singer: 'Lê Cát Trọng Lý',image: '../assets/img/7.png', key: '6'},
-    {name: 'Thương',singer: 'Blackpink',image: '../assets/img/8.png', key: '7'},
+  let [song, setSong] = useState([
+    // {name: 'Still with you',singer: 'Jungkook', image: '../assets/img/2.png', key: '1'},
+    // {name: 'Heyahe',singer: 'Jung Je-Won',image: '../assets/img/3.png', key: '2'},
+    // {name: 'Instagram',singer: 'Dean',image: '../assets/img/4.png', key: '3'},
+    // {name: 'Mưa hồng',singer: 'Khánh Ly',image: '../assets/img/5.png', key: '4'},
+    // {name: 'Long long ago',singer: 'Unknow',image: '../assets/img/6.png', key: '5'},
+    // {name: 'How you like that',singer: 'Lê Cát Trọng Lý',image: '../assets/img/7.png', key: '6'},
+    // {name: 'Thương',singer: 'Blackpink',image: '../assets/img/8.png', key: '7'},
   ]);
+  
+
+  useEffect(() => {
+    let baihat=[];
+    let songs=[];
+    
+    firebase
+      .database()
+      .ref("BAIHAT/")
+      .on("value", function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+          var childData = childSnapshot.val();
+          baihat.push({
+            key: childSnapshot.key,
+            Ten: childData.Ten,
+            Casi: childData.Casi,
+            Danhmuc:childData.Danhmuc,
+            Linkava:childData.Linkava,
+            Linkbaihat: childData.Linkbaihat,
+            Luotnghe:childData.Luotnghe,
+            Luotai:childData.Luotai,
+            Luotthich: childData.Luotthich,
+            Tag:childData.Tag,
+            Ngaydangtai: childData.Ngaydangtai
+          });          
+        });
+      });
+      let i =  0  ; 
+      baihat.sort(function(a,b){
+        if(a.Luotnghe> b.Luotnghe) return -1;
+        if(a.Luotnghe <b.Luotnghe) return 1;});
+      while (i < baihat.length) {
+        songs.push(baihat[i]);
+        i++;
+      }    
+      // SECTIONS=array;
+      song=songs;
+      console.log(song);
+    }, [])
   return (
     
     <View style={StyleSheet.container}>
@@ -36,10 +81,10 @@ export default function Chart({ navigation }) {
         renderItem={({item}) => (
           <TouchableOpacity style={styles.item}>
             <View style={styles.itemLeft}>
-              <Image source = {item.image} style={styles.avtSong}></Image>
+              <Image source = {{uri: item.Linkava}} style={styles.avtSong}></Image>
               <View style={styles.itemTitle}>
-                <Text style={styles.nameSong}>{item.name}</Text>
-                <Text style={styles.singer}>{item.singer}</Text>
+                <Text style={styles.nameSong}>{item.Ten}</Text>
+                <Text style={styles.singer}>{item.Casi}</Text>
               </View>
             </View>
             <TouchableOpacity style={styles.circular}></TouchableOpacity>
@@ -160,7 +205,7 @@ const styles = StyleSheet.create({
     borderColor: '#7B6242',
     borderWidth: 2,
     borderRadius: 5,
-    marginLeft: 350,
+    marginLeft: 250,
     marginBottom: 20,
   },
 });

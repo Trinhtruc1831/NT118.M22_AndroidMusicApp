@@ -85,6 +85,35 @@ export default function Signup({ navigation }) {
     }
      
     }
+    var date = new Date().getDate(); //Current Date
+    var month = new Date().getMonth() + 1; //Current Month
+    var year = new Date().getFullYear(); //Current Year
+    var today= date+'/'+month+'/'+year;
+    firebase
+    .database()
+    .ref("BAIHAT/")
+    .push()
+    .set(
+      {
+        Ten: "hai mươi hai (22)",
+        Casi:  "Hứa Kim Tuyền, AMEE",
+        Danhmuc:"V-pop",
+        Linkava:"https://dj24h.com/wp-content/uploads/2022/05/hai-muoi-hai-emee.jpg",
+        Linkbaihat: "../assets/music/22.mp3",
+        Luotnghe:2,
+        Luotai:0,
+        Luotthich:0,
+        Tag:"V-pop",
+        Ngaydangtai: today
+      },
+      function (error) {
+        if (error) {
+          console.log("Lỗi");
+        } else {
+          console.log("Thành công");
+        }
+      }
+    );
   }
   return (
     <View style={styles.container}>
