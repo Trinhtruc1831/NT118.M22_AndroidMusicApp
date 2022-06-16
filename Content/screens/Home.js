@@ -247,12 +247,16 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 0.15,
-    marginTop: 10,
+    paddingTop: 5,
+    paddingLeft:10,
+    paddingRight:10,
+    backgroundColor: '#7B6242',
     //position: 'absolute',
   },
   input: {
-    flex: 1,
+    //flex: 0.5,
     marginVertical: 15,
+    marginTop: 30,
    // marginHorizontal: 18,
     borderWidth: 2,
     backgroundColor: "#F4ECD0",

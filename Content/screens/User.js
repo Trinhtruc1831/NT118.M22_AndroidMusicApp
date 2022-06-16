@@ -5,10 +5,15 @@ import background from "../assets/icon/background.png";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // import styles from '../styles/Styles';
 // import { color } from 'react-native-reanimated';
+import  { useState, useEffect } from "react";
 
 
+export default function User({ route, navigation }) {
+  useEffect(()=>{    
+    console.log(route.params);
 
-export default function User({ navigation }) {
+  },[])
+
   return (
 
     <View>
@@ -24,7 +29,7 @@ export default function User({ navigation }) {
             width: 200, height: 200,
             borderRadius: 100, marginTop: -50
           }}></Image>
-          <Text style={{ fontSize: 25, fontWeight: 'bold', padding: 10 }}>TeeTeeTee</Text>
+          <Text style={{ fontSize: 25, fontWeight: 'bold', padding: 10 }}>{route.params.ten}</Text>
         </View>
         <View style={styles.container}>
           <TouchableOpacity style={styles.TouchButton}>
@@ -56,7 +61,12 @@ export default function User({ navigation }) {
             <Image source={require('../assets/icon/nextright.png')}
               style={{ width: 20, height: 20, marginLeft: 150 }}></Image>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.editInfo2}>
+          <TouchableOpacity style={styles.editInfo2} 
+          onPress={() => 
+            navigation.navigate("Doimatkhau", {
+              paramKey: route.params.paramKey,
+            })
+          }>
             <Text style={{ fontSize: 20, color: '#7B6242', fontWeight: 'bold', textAlign: 'left' }}>Đổi mật khẩu</Text>
             <Image source={require('../assets/icon/nextright.png')}
               style={{ width: 20, height: 20, marginLeft: 260 }}></Image>
@@ -96,7 +106,7 @@ const styles = StyleSheet.create({
   editInfo: {
     flexDirection: 'row',
     justifyContent: 'center',
-    width: '90%',
+    width: '100%',
     padding: 20,
     marginTop: 70,
     paddingBottom: 10,
@@ -104,7 +114,7 @@ const styles = StyleSheet.create({
   editInfo2: {
     flexDirection: 'row',
     justifyContent: 'center',
-    width: '90%',
+    width: '100%',
     padding: 20,
     marginTop: 10,
     paddingBottom: 10,
@@ -112,4 +122,3 @@ const styles = StyleSheet.create({
   },
 
 });
-

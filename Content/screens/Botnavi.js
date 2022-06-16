@@ -2,6 +2,7 @@ import { View, Text, Button, Image } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import "react-native-gesture-handler";
+import { useState, useEffect } from "react";
 
 import User from "./User";
 import Chart from "./Chart";
@@ -17,7 +18,10 @@ import Charticon from "../assets/icon/chart.png";
 
 const Tab = createBottomTabNavigator();
 
-export default function Botnavi({ navigation }) {
+export default function Botnavi({ route, navigation }) {
+  useEffect(()=>{    
+    console.log(route.params);
+  },[])
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -30,7 +34,8 @@ export default function Botnavi({ navigation }) {
       <Tab.Screen
         style={Styles.bottomnavi}
         name="User"
-        component={User}
+        component={User}  
+        initialParams={route.params}      
         options={{
           tabBarIcon: ({ size, focused, color }) => {
             return (

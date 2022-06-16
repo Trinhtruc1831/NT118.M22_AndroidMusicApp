@@ -124,6 +124,7 @@ export default function Signup({ navigation }) {
             value={password}
             placeholder="Nhập mật khẩu"
             keyboardType="numeric"
+            secureTextEntry={true}
           />
           <Text style={styles.text}>Nhập lại mật khẩu</Text>
           <TextInput
@@ -134,6 +135,7 @@ export default function Signup({ navigation }) {
             value={conpass}
             placeholder="Nhập lại mật khẩu"
             keyboardType="numeric"
+            secureTextEntry={true}
           />
         </View>
 

@@ -55,6 +55,7 @@ export default function Login({ navigation }) {
           id: childSnapshot.key,
           Username: childData.Username,
           Password: childData.Password,
+          Ten: childData.Hoten,
         });
       });
       //setData(array);
@@ -62,7 +63,10 @@ export default function Login({ navigation }) {
     let i = 0;
     while (i < array.length) {
       if (array[i].Username == user && array[i].Password == pass) {
-        return navigation.navigate("Botnavi");
+        return navigation.navigate("Botnavi", {
+          paramKey: array[i].id,
+          ten: array[i].Ten,
+        });
       } else {
         i = i + 1;
       }
@@ -108,6 +112,7 @@ export default function Login({ navigation }) {
             value={password}
             placeholder="Nhập mật khẩu vào đây"
             keyboardType="numeric"
+            secureTextEntry={!isChecked}
           />
         </View>
 
