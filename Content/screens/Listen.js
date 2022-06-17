@@ -26,6 +26,13 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Slider from '@react-native-community/slider';
 
 import background from "../assets/icon/background.png";
+
+import firebase from "firebase/compat/app";
+import ConnectFirebase from "../config";
+import "firebase/compat/auth";
+
+import "firebase/compat/database";
+import "firebase/compat/firestore";
 //import songs from "../model/data";
 
 const {width, height} = Dimensions.get('window');
@@ -105,6 +112,7 @@ export default function Listen({ route, navigation }) {
   useEffect(()=>{
     var st=route.params.Linkava;
     var st1=route.params.Linkbaihat;
+    var tmp= route.params.Luotnghe+1;
     console.log(route.params);
     // songs=[
     //     {
@@ -118,11 +126,22 @@ export default function Listen({ route, navigation }) {
         {
             Title: route.params.Ten,
             artist:route.params.Casi,
-            artwork: require("../assets/img/1.png"),
-            url: require("../assets/music/1.mp3"),
+            artwork: route.params.Ava,
+            url: route.params.Linkbaihat,
             id: 1,
             duration: 331,
         }];
+        // firebase.database().ref('MEMBER/'+route.params.Key).update({
+        //     Luotnghe: tmp
+        //   }, function (error) {
+        //     if (error) {
+        //       // The write failed...
+        //       alert('Lỗi')
+        //     } else {
+        //       // Data saved successfully!
+        //       alert('Thành Công !!!')
+        //     }
+        //   });
       scrollX.addListener(({value})=>{
           const index = Math.round(value/width);
           skipTo(index);
@@ -186,7 +205,7 @@ export default function Listen({ route, navigation }) {
           }}>
               <View style = {styles.artworkWrapper}>
                   <Animated.Image 
-                      source = {trackArtwork}
+                      source = {{uri:song.artwork}}
                       style = {styles.artworkImg}
                   />
               </View>

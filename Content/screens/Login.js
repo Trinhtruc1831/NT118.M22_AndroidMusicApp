@@ -99,7 +99,7 @@ export default function Login({ navigation }) {
             onChangeText={(text) => {
               setUsername(text);
             }}
-            value={username}
+            //value={username}
             placeholder="Nhập tên tài khoản vào đây"
             keyboardType="numeric"
           />
@@ -109,7 +109,7 @@ export default function Login({ navigation }) {
             onChangeText={(text) => {
               setPass(text);
             }}
-            value={password}
+            //value={password}
             placeholder="Nhập mật khẩu vào đây"
             keyboardType="numeric"
             secureTextEntry={!isChecked}

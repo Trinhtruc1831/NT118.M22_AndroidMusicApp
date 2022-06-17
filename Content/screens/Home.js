@@ -66,6 +66,7 @@ const ListItem = ({ item }) => {
 
 
 export default function Home({ navigation }) {
+  const [keyword, setKeyword] = useState(null);
   useEffect(() => {
     let baihat=[];
     let array = [
@@ -122,17 +123,26 @@ export default function Home({ navigation }) {
     }, [])
     return (
       <View style={styles.container}>
-        
       <View style={styles.header}>  
+      <View style={styles.button}>  
       <TextInput
             style={styles.input}
-            // onChangeText={(text) => {
-            //   setPass(text);
-            // }}
-            // value={number}
+            onChangeText={(text) => {
+              setKeyword(text);
+            }}
+            //value={number}
             placeholder="search"
             keyboardType="numeric"
           /> 
+          <Button
+            title="Tìm"
+            style={styles.btseach}
+            color="#7B6242"
+            onPress={() => navigation.navigate("Search", {
+              keyword: keyword,
+            })}
+          />
+      </View>
       </View>
       <StatusBar style="light" />
       
@@ -275,7 +285,7 @@ const styles = StyleSheet.create({
     //position: 'absolute',
   },
   input: {
-    //flex: 0.5,
+    flex: 0.9,
     marginVertical: 15,
     marginTop: 30,
    // marginHorizontal: 18,
@@ -300,4 +310,11 @@ const styles = StyleSheet.create({
     marginRight: 10,
     color: "#7B6242",
   },
+  btsearch:{
+    flex: 0.1, 
+    width: 10, 
+    height:50 , 
+    paddingTop: 10,
+    marginTop:30,
+  }
 });

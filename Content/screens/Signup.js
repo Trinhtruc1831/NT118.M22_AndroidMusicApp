@@ -88,57 +88,7 @@ export default function Signup({ navigation }) {
     var date = new Date().getDate(); //Current Date
     var month = new Date().getMonth() + 1; //Current Month
     var year = new Date().getFullYear(); //Current Year
-    var today= date+'/'+month+'/'+year;
-    firebase
-    .database()
-    .ref("BAIHAT/")
-    .push()
-    .set(
-      {
-        Ten: "Chuyện rằng",
-        Casi:  "Thịnh Suy",
-        Danhmuc:"V-pop",
-        Linkava:"https://data.chiasenhac.com/data/cover/126/125351.jpg",
-        Linkbaihat: "../assets/music/chuyenrang.mp3",
-        Luotnghe:2,
-        Luotai:0,
-        Luotthich:0,
-        Tag:"V-pop",
-        Ngaydangtai: today
-      },
-      function (error) {
-        if (error) {
-          console.log("Lỗi");
-        } else {
-          console.log("Thành công");
-        }
-      });
-
-      firebase
-    .database()
-    .ref("BAIHAT/")
-    .push()
-    .set(
-      {
-        Ten: "Tình yêu màu xanh lá",
-        Casi:  "Thịnh Suy",
-        Danhmuc:"V-pop",
-        Linkava:"https://i.scdn.co/image/ab67616d00001e027fe173c30db7247b73fd9ffa",
-        Linkbaihat: "../assets/music/tinhyeumauxanhla.mp3",
-        Luotnghe:2,
-        Luotai:0,
-        Luotthich:0,
-        Tag:"V-pop",
-        Ngaydangtai: today
-      },
-      function (error) {
-        if (error) {
-          console.log("Lỗi");
-        } else {
-          console.log("Thành công");
-        }
-      }
-    );
+    var today= date+'/'+month+'/'+year;    
   }
   return (
     <View style={styles.container}>

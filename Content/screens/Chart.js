@@ -80,7 +80,13 @@ export default function Chart({ navigation }) {
       <FlatList style={styles.main}
         data={song}
         renderItem={({item}) => (
-          <TouchableOpacity style={styles.item}>
+          <TouchableOpacity style={styles.item} onPress={() => navigation.navigate("Listen", {
+            Ten:item.Ten,
+            Casi:item.Casi,
+            Ava:item.Linkava,
+            Linkbaihat:item.Linkbaihat,
+            Key:item.key,
+          })}>
             <View style={styles.itemLeft}>
               <Image source = {{uri: item.Linkava}} style={styles.avtSong}></Image>
               <View style={styles.itemTitle}>

@@ -11,6 +11,7 @@ import Botnavi from "./screens/Botnavi";
 import Doimatkhau from "./screens/Doimatkhau";
 import Baihatdanhmuc from "./screens/Baihatdanhmuc";
 import Listen from "./screens/Listen";
+import Search from "./screens/Search";
 import User from "./screens/User";
 import firebase from "firebase/compat/app";
 
@@ -95,6 +96,7 @@ export default function App() {
         <Stack.Screen name="Doimatkhau" component={Doimatkhau} />
         <Stack.Screen name="Baihatdanhmuc" component={Baihatdanhmuc} />
         <Stack.Screen name="Listen" component={Listen} />
+        <Stack.Screen name="Search" component={Search} />
         {/* <Stack.Screen name="User" component={User}/> */}
       </Stack.Navigator>
     </NavigationContainer>

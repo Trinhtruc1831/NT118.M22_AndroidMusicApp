@@ -13,7 +13,7 @@ import { View,FlatList, Text, ScrollView, ImageBackground,
  // import styles from '../styles/Styles';
  
  
- export default function Baihatdanhmuc({ route, navigation }) {
+ export default function Search({ route, navigation }) {
  // tạo mẫu để chạy giao diện thui nhe
    let [song, setSong] = useState([
      // {name: 'Still with you',singer: 'Jungkook', image: '../assets/img/2.png', key: '1'},
@@ -53,7 +53,8 @@ import { View,FlatList, Text, ScrollView, ImageBackground,
        });
        let i =  0  ; 
        while (i < baihat.length) {
-        if (baihat[i].Danhmuc==route.params.Danhmuc) song.push(baihat[i]);
+
+        if ((baihat[i].Danhmuc.includes(route.params.keyword))||(baihat[i].Ten.includes(route.params.keyword))||(baihat[i].Casi.includes(route.params.keyword))) song.push(baihat[i]);
          i++;
        }    
      }   
@@ -65,17 +66,17 @@ import { View,FlatList, Text, ScrollView, ImageBackground,
      
      <View style={StyleSheet.container}>
        <View style={{ padding: 10, width: '100%', backgroundColor: '#7B6242', height: 100 }}>
-         <View style={styles.header} onPress={() => {
+         <View style={styles.header} onPress={() => 
                     navigation.goBack()
-                   }}>
+                   }>
            <Image source={require('../assets/icon/backpage.png')}
                  style={{ width: 30, height: 20, paddingRight: 20, marginTo:10 }}
                  ></Image>
-           <Title style={{ fontSize: 20, color: '#F4ECD0', fontWeight: 'bold', marginLeft: 20 }}>Danh mục</Title>
+           <Title style={{ fontSize: 20, color: '#F4ECD0', fontWeight: 'bold', marginLeft: 20 }}>Tìm kiếm</Title>
          </View>
        </View>
  
-       <Text style={styles.sectionTitle}>#{route.params.Danhmuc}</Text>
+       <Text style={styles.sectionTitle}>#{route.params.keyword}</Text>
  
        <FlatList style={styles.main}
          data={song}
