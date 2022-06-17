@@ -23,42 +23,27 @@ import "firebase/compat/firestore";
 
 const ListItem = ({ item }) => {
   return (
-    <View style={styles.item} onPress={() => 
-      navigation.navigate("Listen", {
-        key: childSnapshot.key,
-            Ten: item.Ten,
-            Casi: item.Casi,
-            Danhmuc:item.Danhmuc,
-            Linkava:item.Linkava,
-            Linkbaihat: item.Linkbaihat,
-            Luotnghe:item.Luotnghe,
-            Luotai:item.Luotai,
-            Luotthich: item.Luotthich,
-            Tag:item.Tag,
-            Ngaydangtai: item.Ngaydangtai
-      })
-    }>
+    <View style={styles.item} 
+      onPress={() => navigation.navigate("Listen", {
+        Ten:item.Ten,
+        Casi:item.Casi,
+        Ava:item.Linkava,
+        Linkbaihat:item.Linkbaihat,
+        Key:item.key,
+      })}>
       <Image
         style={styles.itemPhoto}
         source={{uri: item.Linkava}}
-        onPress={() => 
-          navigation.navigate("Listen", {
-            key: childSnapshot.key,
-                Ten: item.Ten,
-                Casi: item.Casi,
-                Danhmuc:item.Danhmuc,
-                Linkava:item.Linkava,
-                Linkbaihat: item.Linkbaihat,
-                Luotnghe:item.Luotnghe,
-                Luotai:item.Luotai,
-                Luotthich: item.Luotthich,
-                Tag:item.Tag,
-                Ngaydangtai: item.Ngaydangtai
-          })
-        }
+        
         resizeMode="cover"
       />
-      <Text style={styles.itemText}>{item.Ten}</Text>
+      <Text style={styles.itemText}  onPress={() => navigation.navigate("Listen", {
+        Ten:item.Ten,
+        Casi:item.Casi,
+        Ava:item.Linkava,
+        Linkbaihat:item.Linkbaihat,
+        Key:item.key,
+      })}> {item.Ten}</Text>
     </View>
   );
 };
