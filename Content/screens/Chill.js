@@ -6,142 +6,156 @@ import {
   number,
   Button,
   SafeAreaView,
+  Dimensions,
+  FlatList,
+  Animated, 
   ScrollView,
   ImageBackground,
   StyleSheet,
   Image,
   TouchableOpacity,
 } from "react-native";
+import { Audio } from 'expo-av';
 import React from 'react'
+import TextTicker from 'react-native-text-ticker'
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
 import background from "../assets/icon/background.png";
 import Logo from "../assets/icon/logo.png";
-import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
+
+
+
+import sounds from "../model/sound";
+import songs from "../model/data";
+
+const {width, height} = Dimensions.get('window');
+
+
 
 export default function Chill({ navigation }) {
-    return (
+  // Active sound
+  const [sound, setSound] = React.useState();
+
+  async function playSound(musicsource) {
+    const source = musicsource;
+    console.log('Loading Sound');
+    const { sound } = await Audio.Sound.createAsync(
+      source
+    );
+    
+    setSound(sound);
+    var flag = sound.getStatusAsync()
+    console.log("Nè he");
+    console.log(flag);
+    await sound.playAsync();
+    sound.setVolumeAsync(1);
+    console.log(flag);
+    console.log("-----------");
+
+   }
+
+   async function playSong(musicsource) {
+    const source = musicsource;
+    console.log('Loading Sound');
+    const { sound } = await Audio.Sound.createAsync(
+      source
+    );
+    setSound(sound);
+    var flag = sound.getStatusAsync()
+    console.log("Nè he");
+    console.log(flag);
+    await sound.playAsync();
+    console.log(flag);
+    console.log("-----------");
+
+   }
+
+   async function Stop() {
+    await sound.pauseAsync();
+   }
+
+
+  const ItemSong = ({ title, url }) => (
+    <View style={styles.song}>
+      <TouchableOpacity  style={styles.songControl} onPress={() => playSong(url)}>
+        <Ionicons name="musical-notes-outline" size={28} color="#7A6447" style={{marginBottom:2, marginLeft:5}}/> 
+        <TextTicker scrollSpeed={50} loop bounce numberOfLines={1} style={styles.title}> {title}</TextTicker>
+      </TouchableOpacity>
+    </View>
+  );
+  
+  const ItemSound = ({ title, url }) => (  
+    <View style={styles.song}>
+      <TouchableOpacity  style={styles.songControl} onPress={() => playSound(url)}>
+        <Ionicons name="ear-outline" size={28} color="#7A6447" style={{marginBottom:2, marginLeft:5}}/> 
+        <TextTicker scrollSpeed={50} loop bounce numberOfLines={1} style={styles.title}> {title}</TextTicker>
+      </TouchableOpacity>
+    </View>
+  );
+
+
+  // RenderSong
+  const renderSongs = ({ item }) => (
+    <ItemSong title={item.Title} url = {item.url} />
+  );
+  const renderSounds = ({ item }) => (
+    <ItemSound title={item.Title} url = {item.url} />
+  );
+
+
+//////////-----------------///////
+  return (
       <ImageBackground
         source={background}
         resizeMode="cover"
         style={styles.image}
       >
         <Image source={Logo} resizeMode="contain" style={styles.logo} />
-                  
+        {/* <Button title="Pause" style={styles.pause} onPress={() => Stop()}/> */}
           <View style= {styles.row}>
             <ScrollView style={styles.column} >
-              <View style={styles.song}>
-                <TouchableOpacity  style={styles.songControl}>
-                    <Ionicons name="ios-pause" size={28} color="#7A6447" style={{marginBottom:2, marginLeft:5}}/> 
-                    <Text style={{color:"#7B6242", fontSize:15, fontWeight: '400'}}> onHeyaahde</Text>
-                </TouchableOpacity> 
-              </View>
-              <View style={styles.song}>
-                <TouchableOpacity  style={styles.songControl}>
-                    <Ionicons name="ios-pause" size={28} color="#7A6447" style={{marginBottom:2, marginLeft:5}}/> 
-                    <Text style={{color:"#7B6242", fontSize:15, fontWeight: '400'}}> dHeyaahde</Text>
-                </TouchableOpacity> 
-              </View>
-              <View style={styles.song}>
-                <TouchableOpacity  style={styles.songControl}>
-                    <Ionicons name="ios-pause" size={28} color="#7A6447" style={{marginBottom:2, marginLeft:5}}/> 
-                    <Text style={{color:"#7B6242", fontSize:15, fontWeight: '400'}}> sHeyaahde</Text>
-                </TouchableOpacity> 
-              </View>
-              <View style={styles.song}>
-                <TouchableOpacity  style={styles.songControl}>
-                    <Ionicons name="ios-pause" size={28} color="#7A6447" style={{marginBottom:2, marginLeft:5}}/> 
-                    <Text style={{color:"#7B6242", fontSize:15, fontWeight: '400'}}> aHeyaahde</Text>
-                </TouchableOpacity> 
-              </View>
-              <View style={styles.song}>
-                <TouchableOpacity  style={styles.songControl}>
-                    <Ionicons name="ios-pause" size={28} color="#7A6447" style={{marginBottom:2, marginLeft:5}}/> 
-                    <Text style={{color:"#7B6242", fontSize:15, fontWeight: '400'}}> vHeyaahde</Text>
-                </TouchableOpacity> 
-              </View>
-              <View style={styles.song}>
-                <TouchableOpacity  style={styles.songControl}>
-                    <Ionicons name="ios-pause" size={28} color="#7A6447" style={{marginBottom:2, marginLeft:5}}/> 
-                    <Text style={{color:"#7B6242", fontSize:15, fontWeight: '400'}}> Heyaahde</Text>
-                </TouchableOpacity> 
-              </View>
-              <View style={styles.song}>
-                <TouchableOpacity  style={styles.songControl}>
-                    <Ionicons name="ios-pause" size={28} color="#7A6447" style={{marginBottom:2, marginLeft:5}}/> 
-                    <Text style={{color:"#7B6242", fontSize:15, fontWeight: '400'}}> Heyaahde</Text>
-                </TouchableOpacity> 
-              </View>
-              <View style={styles.song}>
-                <TouchableOpacity  style={styles.songControl}>
-                    <Ionicons name="ios-pause" size={28} color="#7A6447" style={{marginBottom:2, marginLeft:5}}/> 
-                    <Text style={{color:"#7B6242", fontSize:15, fontWeight: '400'}}> Heyaahde</Text>
-                </TouchableOpacity> 
-              </View>
-            </ScrollView>
-            <ScrollView style={styles.column}>
-                <View style={styles.song}>
-                  <TouchableOpacity  style={styles.songControl}>
-                      <Ionicons name="ios-pause" size={28} color="#7A6447" style={{marginBottom:2, marginLeft:5}}/> 
-                      <Text style={{color:"#7B6242", fontSize:15, fontWeight: '400'}}> Heyaahde</Text>
-                  </TouchableOpacity> 
-                </View>
-                <View style={styles.song}>
-                  <TouchableOpacity  style={styles.songControl}>
-                      <Ionicons name="ios-pause" size={28} color="#7A6447" style={{marginBottom:2, marginLeft:5}}/> 
-                      <Text style={{color:"#7B6242", fontSize:15, fontWeight: '400'}}> Heyaahde</Text>
-                  </TouchableOpacity> 
-                </View>
-                <View style={styles.song}>
-                  <TouchableOpacity  style={styles.songControl}>
-                      <Ionicons name="ios-pause" size={28} color="#7A6447" style={{marginBottom:2, marginLeft:5}}/> 
-                      <Text style={{color:"#7B6242", fontSize:15, fontWeight: '400'}}> Heyaahde</Text>
-                  </TouchableOpacity> 
-                </View>
+              <FlatList
+                    data={songs}
+                    renderItem={renderSongs}
+                    keyExtractor={item => item.id}
+              />
+            </ScrollView> 
+            <ScrollView style={styles.column} >
+              <FlatList
+                    data={sounds}
+                    renderItem={renderSounds}
+                    keyExtractor={item => item.id}
+              />
             </ScrollView>
           </View>
-          
-          {/* <SafeAreaView style = {styles.container}>
-            <View style={styles.row}>
-              <View style={styles.song}>
-                  <TouchableOpacity  style={styles.songControl}>
-                      <Ionicons name="ios-pause" size={28} color="#7A6447" style={{marginBottom:2, marginLeft:5}}/> 
-                      <Text style={{color:"#7B6242", fontSize:15, fontWeight: '400'}}> Heyaahde</Text>
-                  </TouchableOpacity> 
-              </View>
-              <View style={styles.song}>
-                  <TouchableOpacity  style={styles.songControl}>
-                      <Ionicons name="ios-pause" size={28} color="#7A6447" style={{marginBottom:2, marginLeft:5}}/> 
-                      <Text style={{color:"#7B6242", fontSize:15, fontWeight: '400'}}> Heyaahde</Text>
-                  </TouchableOpacity> 
-              </View>
-            </View>
-            <View style={styles.row}>
-              <View style={styles.song}>
-                  <TouchableOpacity  style={styles.songControl}>
-                      <Ionicons name="ios-pause" size={28} color="#7A6447" style={{marginBottom:2, marginLeft:5}}/> 
-                      <Text style={{color:"#7B6242", fontSize:15, fontWeight: '400'}}> Heyaahde</Text>
-                  </TouchableOpacity> 
-              </View>
-              <View style={styles.song}>
-                  <TouchableOpacity  style={styles.songControl}>
-                      <Ionicons name="ios-pause" size={28} color="#7A6447" style={{marginBottom:2, marginLeft:5}}/> 
-                      <Text style={{color:"#7B6242", fontSize:15, fontWeight: '400'}}> Heyaahde</Text>
-                  </TouchableOpacity> 
-              </View>
-            </View>
-          </SafeAreaView> */}
-          
       </ImageBackground>
+
       );
 }
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     marginTop: 50,
+//   },
+//   item: {
+//     backgroundColor: '#f9c2ff',
+//     padding: 20,
+//     marginVertical: 8,
+//     marginHorizontal: 16,
+//   },
+// });
 const styles = StyleSheet.create({
   container: {
       flex:1,
       borderColor:'black',
       borderWidth:2
   },
+  pause: {
+      backgroundColor: '#f9c2ff',
+      padding: 20,
+      marginVertical: 8,
+      marginHorizontal: 16,
+    },
   column: {
     flex:1,
     marginBottom: 35,
@@ -171,9 +185,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 3,
     flexDirection: 'row',
+    paddingRight: 10
+  },
+  title: {
+    color:"#7B6242",
+    fontSize:15, 
+    
   },
   songControl:{
     flexDirection: 'row', 
-    alignItems:'center'
+    alignItems:'center',
   }
 });

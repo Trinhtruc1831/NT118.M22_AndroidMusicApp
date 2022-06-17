@@ -70,8 +70,8 @@ export default function Botnavi({ route, navigation }) {
       />
       <Tab.Screen
         style={Styles.bottomnavi}
-        name="Lismusic"
-        component={Lismusic}
+        name="Chill"
+        component={Chill}
         options={{
           tabBarIcon: ({ size, focused, color }) => {
             return (
