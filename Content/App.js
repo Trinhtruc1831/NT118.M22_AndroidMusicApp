@@ -9,6 +9,8 @@ import Login from "./screens/Login";
 import Signup from "./screens/Signup";
 import Botnavi from "./screens/Botnavi";
 import Doimatkhau from "./screens/Doimatkhau";
+import Baihatdanhmuc from "./screens/Baihatdanhmuc";
+import Listen from "./screens/Listen";
 import User from "./screens/User";
 import firebase from "firebase/compat/app";
 
@@ -91,6 +93,8 @@ export default function App() {
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Botnavi" component={Botnavi} />
         <Stack.Screen name="Doimatkhau" component={Doimatkhau} />
+        <Stack.Screen name="Baihatdanhmuc" component={Baihatdanhmuc} />
+        <Stack.Screen name="Listen" component={Listen} />
         {/* <Stack.Screen name="User" component={User}/> */}
       </Stack.Navigator>
     </NavigationContainer>

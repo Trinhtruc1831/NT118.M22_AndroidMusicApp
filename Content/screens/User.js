@@ -71,6 +71,14 @@ export default function User({ route, navigation }) {
             <Image source={require('../assets/icon/nextright.png')}
               style={{ width: 20, height: 20, marginLeft: 260 }}></Image>
           </TouchableOpacity>
+          <TouchableOpacity style={styles.editInfo2} 
+          onPress={() => 
+            navigation.navigate("Login")
+          }>
+            <Text style={{ fontSize: 20, color: '#7B6242', fontWeight: 'bold', textAlign: 'left' }}>Đăng xuất</Text>
+            <Image source={require('../assets/icon/nextright.png')}
+              style={{ width: 20, height: 20, marginLeft: 260 }}></Image>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>

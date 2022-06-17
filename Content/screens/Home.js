@@ -23,10 +23,39 @@ import "firebase/compat/firestore";
 
 const ListItem = ({ item }) => {
   return (
-    <View style={styles.item}>
+    <View style={styles.item} onPress={() => 
+      navigation.navigate("Listen", {
+        key: childSnapshot.key,
+            Ten: item.Ten,
+            Casi: item.Casi,
+            Danhmuc:item.Danhmuc,
+            Linkava:item.Linkava,
+            Linkbaihat: item.Linkbaihat,
+            Luotnghe:item.Luotnghe,
+            Luotai:item.Luotai,
+            Luotthich: item.Luotthich,
+            Tag:item.Tag,
+            Ngaydangtai: item.Ngaydangtai
+      })
+    }>
       <Image
         style={styles.itemPhoto}
         source={{uri: item.Linkava}}
+        onPress={() => 
+          navigation.navigate("Listen", {
+            key: childSnapshot.key,
+                Ten: item.Ten,
+                Casi: item.Casi,
+                Danhmuc:item.Danhmuc,
+                Linkava:item.Linkava,
+                Linkbaihat: item.Linkbaihat,
+                Luotnghe:item.Luotnghe,
+                Luotai:item.Luotai,
+                Luotthich: item.Luotthich,
+                Tag:item.Tag,
+                Ngaydangtai: item.Ngaydangtai
+          })
+        }
         resizeMode="cover"
       />
       <Text style={styles.itemText}>{item.Ten}</Text>
@@ -147,18 +176,18 @@ export default function Home({ navigation }) {
           <Button
             title="V-pop"
             color="#7B6242"
-            onPress={() => {
-              get_DATA(username, password);
-            }}
+            onPress={() => navigation.navigate("Baihatdanhmuc", {
+              Danhmuc: "V-pop",
+            })}
           />
         </View>
         <View style={styles.btlogin}>
           <Button
             title="K-pop"
             color="#7B6242"
-            onPress={() => {
-              get_DATA(username, password);
-            }}
+            onPress={() => navigation.navigate("Baihatdanhmuc", {
+              Danhmuc: "K-pop",
+            })}
           />
         </View>
          </View>
@@ -167,18 +196,18 @@ export default function Home({ navigation }) {
           <Button
             title="J-pop"
             color="#7B6242"
-            onPress={() => {
-              get_DATA(username, password);
-            }}
+            onPress={() => navigation.navigate("Baihatdanhmuc", {
+              Danhmuc: "J-pop",
+            })}
           />
         </View>
         <View style={styles.btlogin}>
           <Button
-            title="US=UK"
+            title="US-UK"
             color="#7B6242"
-            onPress={() => {
-              get_DATA(username, password);
-            }}
+            onPress={() => navigation.navigate("Baihatdanhmuc", {
+              Danhmuc: "US-UK",
+            })}
           />
         </View>
         </View>

@@ -95,11 +95,36 @@ export default function Signup({ navigation }) {
     .push()
     .set(
       {
-        Ten: "hai mươi hai (22)",
-        Casi:  "Hứa Kim Tuyền, AMEE",
+        Ten: "Chuyện rằng",
+        Casi:  "Thịnh Suy",
         Danhmuc:"V-pop",
-        Linkava:"https://dj24h.com/wp-content/uploads/2022/05/hai-muoi-hai-emee.jpg",
-        Linkbaihat: "../assets/music/22.mp3",
+        Linkava:"https://data.chiasenhac.com/data/cover/126/125351.jpg",
+        Linkbaihat: "../assets/music/chuyenrang.mp3",
+        Luotnghe:2,
+        Luotai:0,
+        Luotthich:0,
+        Tag:"V-pop",
+        Ngaydangtai: today
+      },
+      function (error) {
+        if (error) {
+          console.log("Lỗi");
+        } else {
+          console.log("Thành công");
+        }
+      });
+
+      firebase
+    .database()
+    .ref("BAIHAT/")
+    .push()
+    .set(
+      {
+        Ten: "Tình yêu màu xanh lá",
+        Casi:  "Thịnh Suy",
+        Danhmuc:"V-pop",
+        Linkava:"https://i.scdn.co/image/ab67616d00001e027fe173c30db7247b73fd9ffa",
+        Linkbaihat: "../assets/music/tinhyeumauxanhla.mp3",
         Luotnghe:2,
         Luotai:0,
         Luotthich:0,

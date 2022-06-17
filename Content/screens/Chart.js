@@ -29,8 +29,8 @@ export default function Chart({ navigation }) {
   useEffect(() => {
     let baihat=[];
     let songs=[];
-    
-    firebase
+    if (song.length<1){
+      firebase
       .database()
       .ref("BAIHAT/")
       .on("value", function (snapshot) {
@@ -56,11 +56,12 @@ export default function Chart({ navigation }) {
         if(a.Luotnghe> b.Luotnghe) return -1;
         if(a.Luotnghe <b.Luotnghe) return 1;});
       while (i < baihat.length) {
-        songs.push(baihat[i]);
+        song.push(baihat[i]);
         i++;
       }    
+    }   
       // SECTIONS=array;
-      song=songs;
+      //song=songs;
       console.log(song);
     }, [])
   return (
@@ -76,7 +77,7 @@ export default function Chart({ navigation }) {
 
       <Text style={styles.sectionTitle}>#RChart</Text>
 
-      <FlatList 
+      <FlatList style={styles.main}
         data={song}
         renderItem={({item}) => (
           <TouchableOpacity style={styles.item}>
@@ -129,6 +130,13 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingHorizontal: 20
   },
+  main: {
+    
+   // marginHorizontal: 10,
+    //marginLeft: 20,
+    marginBottom: 50,
+  //  marginTop: 20, 
+  },
   item: {
     
     padding: 5,
@@ -141,7 +149,7 @@ const styles = StyleSheet.create({
     // fontSize: 20,
     // fontWeight: 'bold',
     marginHorizontal: 10,
-    marginLeft: 90,
+    marginLeft: 20,
     marginBottom: 10,
     marginTop: 20,
     borderColor: '#7B6242',
@@ -205,7 +213,7 @@ const styles = StyleSheet.create({
     borderColor: '#7B6242',
     borderWidth: 2,
     borderRadius: 5,
-    marginLeft: 250,
+    marginLeft: 350,
     marginBottom: 20,
   },
 });
